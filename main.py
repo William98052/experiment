@@ -20,6 +20,14 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("shoot like a missile ")
 clock = pygame.time.Clock()
 
+pygame.mixer.music.load('background.mp3')
+pygame.mixer.music.play(-1)
+
+explosion_sound = pygame.mixer.Sound('Explosion+2.wav') # pygame.mixer.music.load('Explosion+2.wav')
+
+shoot_sound = pygame.mixer.Sound('shoot.wav')
+shoot_sound.set_volume(0.4)
+
 background = pygame.image.load('sky.jpg').convert()
 background_rect = background.get_rect()
 
@@ -70,31 +78,6 @@ class Bullet(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
 
-            for event in pygame.event.get():
-                # check for closing window
-                if event.type == pygame.QUIT:
-                    running = False
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        player.shoot()
-
-                        bullets = pygame.sprite.Group()
-
-                        def shoot(self):
-                            bullet = Bullet(self.rect.centerx, self.rect.top)
-                            all_sprites.add(bullet)
-                            bullets.add(bullet)
-
-                            # Update
-                            all_sprites.update()
-
-                            # check to see if a bullet hit a mob
-                            hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
-                            for hit in hits:
-                                m = Mob()
-                                all_sprites.add(m)
-                                mobs.add(m)
-
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -126,6 +109,7 @@ class Player(pygame.sprite.Sprite):
         bullet = Bullet(self.rect.centerx, self.rect.top)
         all_sprites.add(bullet)
         bullets.add(bullet)
+        shoot_sound.play()
 
 
 all_sprites = pygame.sprite.Group()
@@ -156,6 +140,10 @@ while running:
     # check to see if a bullet hit a mob
     hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
     for hit in hits:
+        explosion_sound_volume = random.random()
+        # print("Explosion sound volume is {}".format(explosion_sound_volume))
+        explosion_sound.set_volume(explosion_sound_volume)
+        explosion_sound.play()
         score += 50 - hit.radius
         m = Mob()
         all_sprites.add(m)
