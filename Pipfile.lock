@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "04d5136a2e3e1a7589c6313b58b439879c213afd077d2d6580213f4255dcef7d"
+            "sha256": "f3e05d092f7c4d01acc980b9e3ee1d7f81ef7f39eb6553baf3a7d43fef55779b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,13 @@
         ]
     },
     "default": {
+        "altgraph": {
+            "hashes": [
+                "sha256:1f05a47122542f97028caf78775a095fbe6a2699b5089de8477eb583167d69aa",
+                "sha256:c623e5f3408ca61d4016f23a681b9adb100802ca3e3da5e718915a9e4052cebe"
+            ],
+            "version": "==0.17"
+        },
         "pygame": {
             "hashes": [
                 "sha256:0480fe82cd41a43e3eea497fa2c059c72ac54cb5d003d5aa2ed06a04541c384e",
@@ -47,6 +54,13 @@
             ],
             "index": "pypi",
             "version": "==1.9.6"
+        },
+        "pyinstaller": {
+            "hashes": [
+                "sha256:3730fa80d088f8bb7084d32480eb87cbb4ddb64123363763cf8f2a1378c1c4b7"
+            ],
+            "index": "pypi",
+            "version": "==3.6"
         }
     },
     "develop": {}
